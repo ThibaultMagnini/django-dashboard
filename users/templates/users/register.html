@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register to the Sway Database</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/register.css' %}">
+    <link rel="shortcut icon" href="{% static "dashboard/swaysilver.ico" %}">
+</head>
+<body>
+    <div class="signup__container">
+      <div class="container__child signup__thumbnail">
+        <div class="thumbnail__content text-center">
+          <h1 class="heading--primary">Sway eSports</h1>
+          <h2 class="heading--secondary">Register to the Sway database!</h2>
+            <p>Please make sure to format you discord tag like: name#1111</p>
+            <p>Your birthday should be formated:<br> YYYY-MM-DD</p>
+        </div>
+        <div class="signup__overlay"></div>
+      </div>
+      <div class="container__child signup__form">
+        <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form">
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="label">
+                            <span class="content-name">
+                                {{ field.html_name }}
+                            </span>
+                        </label>
+                        {{ field }}
+                    </div>
+                    </div>
+                {% endfor %}
+          <div class="m-t-lg">
+              <input class="btn btn--form" type="submit" value="Register" />
+          </div>
+        </form>
+      </div>
+    </div>
+</body>
+</html>
